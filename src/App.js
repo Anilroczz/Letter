@@ -1,25 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import SecretCode from "./components/SecretCode";
+import FirstScreen from "./components/FirstScreen";
+import FinalScreen from "./components/FinalScreen";
+import Letters from "./components/Letters";
+import "./App.css";
+import GiftCards from "./components/GiftCards";
+import HugOverlay from "./components/HugOverlay";
+import RestartOverlay from "./components/RestartOverlay";
+import Confession from "./components/Confession";
+import VoiceCard from "./components/VoiceCard";
 
-function App() {
+export default function App() {
+  const [currentScreen, setCurrentScreen] = useState("firstscreen");
+  const [showHugOverlay, setShowHugOverlay] = useState(false);
+  const [showRestartOverlay, setShowRestartOverlay] = useState(false);
+
+  const handleRestart = () => {
+    setCurrentScreen("firstscreen")
+    setShowHugOverlay(false)
+    setShowRestartOverlay(false)
+  }
+
+  const handleHugClose = () => {
+    setShowHugOverlay(false)
+    setShowRestartOverlay(true)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div>
+        {currentScreen === "firstscreen" && (
+          <FirstScreen onNext={() => setCurrentScreen("confession")} />
+        )}
+
+        {currentScreen === "confession" && (
+          <Confession onComplete={() => setCurrentScreen("secret")} />
+        )}
+
+        {currentScreen === "secret" && (
+          <SecretCode onUnlock={() => setCurrentScreen("letter")} />
+        )}
+
+        {currentScreen === "letter" && (
+          <Letters onNext={() => setCurrentScreen("giftcards")} />
+        )}
+
+        {currentScreen === "giftcards" && (
+          <GiftCards onNext={() => setCurrentScreen("voicecard")} />
+        )}
+
+        {currentScreen === "voicecard" && (
+          <VoiceCard onNext={() => setCurrentScreen("finalscreen")} />
+        )}
+
+        {currentScreen === "finalscreen" && (
+          <FinalScreen onNext={() => setShowHugOverlay(true)} />
+        )}
+
+        <HugOverlay show={showHugOverlay} onClose={handleHugClose} />
+        <RestartOverlay show={showRestartOverlay} onRestart={handleRestart} />
+      </div>
     </div>
   );
 }
-
-export default App;
