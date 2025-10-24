@@ -8,11 +8,12 @@ export default function Confession({ onComplete }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8 }}
-      className="min-h-screen flex flex-col items-center justify-center text-white px-6 py-8"
+      className="min-h-screen w-full px-6 py-8 overflow-y-auto flex flex-col items-center bg-gradient-to-b from-purple-50 via-pink-50 to-red-50"
     >
       <div className="w-full max-w-2xl">
         <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-white/10 shadow-2xl text-center relative overflow-hidden">
           <div className="relative z-10 space-y-8">
+            {/* Heart + Sparkles */}
             <motion.div
               animate={{
                 scale: [1, 1.05, 1],
@@ -52,6 +53,7 @@ export default function Confession({ onComplete }) {
               ))}
             </motion.div>
 
+            {/* Text */}
             <div className="space-y-6">
               <h2 className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
                 There’s a little secret I’ve been saving for the right moment.
@@ -70,7 +72,7 @@ export default function Confession({ onComplete }) {
               <motion.p
                 animate={{ opacity: [0.8, 1, 0.8] }}
                 transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                className="text-base md:text-lg text-pink-400 leading-relaxed"
+                className="text-base md:text-lg text-pink-500 leading-relaxed"
               >
                 Hi Ammayi...💖. I always wanted to write a letter for uh but I couldn't ayy. 
                 After a long time, I got some free time, so I thought this is a nice time to do someting for uh. 
@@ -81,6 +83,7 @@ export default function Confession({ onComplete }) {
               </motion.p>
             </div>
 
+            {/* Button */}
             <motion.button
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -88,7 +91,7 @@ export default function Confession({ onComplete }) {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={onComplete}
-              className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-10 md:px-12 py-4 rounded-full font-semibold text-base md:text-lg shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+              className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-10 md:px-12 py-4 rounded-full font-semibold text-base md:text-lg shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group mt-6"
             >
               <span className="relative z-10 flex items-center gap-2">
                 <Heart className="w-5 h-5 fill-current" />

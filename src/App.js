@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import SecretCode from "./components/SecretCode";
 import FirstScreen from "./components/FirstScreen";
 import FinalScreen from "./components/FinalScreen";
-import Letters from "./components/Letters";
 import "./App.css";
 import GiftCards from "./components/GiftCards";
 import HugOverlay from "./components/HugOverlay";
@@ -40,10 +39,6 @@ export default function App() {
 
         {currentScreen === "secret" && (
           <SecretCode onUnlock={() => setCurrentScreen("letterswiper")} />
-        )}
-
-        {currentScreen === "letter" && (
-          <Letters onNext={() => setCurrentScreen("giftcards")} />
         )}
 
         {currentScreen === "letterswiper" && (
