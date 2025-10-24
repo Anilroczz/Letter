@@ -9,6 +9,7 @@ import HugOverlay from "./components/HugOverlay";
 import RestartOverlay from "./components/RestartOverlay";
 import Confession from "./components/Confession";
 import VoiceCard from "./components/VoiceCard";
+import LetterSwiper from "./components/LetterSwiper";
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState("firstscreen");
@@ -38,11 +39,15 @@ export default function App() {
         )}
 
         {currentScreen === "secret" && (
-          <SecretCode onUnlock={() => setCurrentScreen("letter")} />
+          <SecretCode onUnlock={() => setCurrentScreen("letterswiper")} />
         )}
 
         {currentScreen === "letter" && (
           <Letters onNext={() => setCurrentScreen("giftcards")} />
+        )}
+
+        {currentScreen === "letterswiper" && (
+          <LetterSwiper onNext={() => setCurrentScreen("giftcards")} />
         )}
 
         {currentScreen === "giftcards" && (
